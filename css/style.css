@@ -627,15 +627,18 @@ a.article-title:hover {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px solid #ddd;
 }
 .article-entry th {
   font-weight: bold;
-  border-bottom: 3px solid #ddd;
+  border: 1px solid #ddd;
   padding-bottom: 0.5em;
+  padding: 10px;
+  background-color: #f1f1f1;
 }
 .article-entry td {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  border: 1px solid #ddd;
+  padding: 10px;
 }
 .article-entry blockquote {
   font-family: Georgia, "Times New Roman", serif;
@@ -1110,7 +1113,7 @@ a.article-title:hover {
 .article-entry pre,
 .article-entry .highlight {
   background: #2d2d2d;
-  margin: 0 -20px;
+  margin: 0 0 20px;
   padding: 15px 20px;
   border-style: solid;
   border-color: #ddd;
@@ -1118,6 +1121,7 @@ a.article-title:hover {
   overflow: auto;
   color: #ccc;
   line-height: 22.400000000000002px;
+  border-radius: 2px;
 }
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
@@ -1146,6 +1150,7 @@ a.article-title:hover {
 .article-entry .highlight table {
   margin: 0;
   width: auto;
+  border: none;
 }
 .article-entry .highlight td {
   border: none;
@@ -1317,7 +1322,6 @@ pre .javascript .function {
 }
 .widget {
   color: #777;
-  text-shadow: 0 1px #fff;
   background: #ddd;
   -webkit-box-shadow: 0 -1px 4px #ccc inset;
   box-shadow: 0 -1px 4px #ccc inset;
