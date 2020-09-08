@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>闭包 | 蔡延松的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="¶概念  MDN: A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闭包">
+<meta property="og:url" content="https://yansongcai.github.io/2020/09/08/bi-bao/index.html">
+<meta property="og:site_name" content="蔡延松的博客">
+<meta property="og:description" content="¶概念  MDN: A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an o">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-08T11:56:31.280Z">
+<meta property="article:modified_time" content="2020-09-08T11:57:00.973Z">
+<meta property="article:author" content="蔡延松">
+<meta property="article:tag" content="蔡延松 延松 cys YansongCai caiyansong">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header-wrap">
+  <div id="header">
+    <!-- <div class="brand-logo">
+      <a href="/" class="waves-effect waves-light">
+        
+        <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+        
+        <span class="logo-span">蔡延松的博客</span>
+      </a>
+    </div> -->
+
+    <nav id="main-nav">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      
+      <a class="main-nav-link" href="/">首页</a>
+      
+      <a class="main-nav-link" href="/archives">列表</a>
+      
+      <a class="main-nav-link" href="/about">关于</a>
+      
+    </nav>
+
+    <div id="search-wrap" class="search-wrap">
+      <div id="search-form-wrap" class="search-form-wrap">
+        <form class="search-form">
+          <input type="search" name="q" class="search-form-input" id="js_site_search_input" placeholder="Search"
+            autocomplete="off">
+            <img id="nav-search-btn" class="nav-icon" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3748312416,1453574622&fm=15&gp=0.jpg" />
+          <!-- <button type="submit" class="search-form-submit">&#xF002;</button> -->
+        </form>
+        <div id="js_site_search_result" class="local-search-result">
+        </div>
+      </div>
+    </div>
+
+    <!-- 自带的 google搜索 -->
+    <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yansongcai.github.io"></form>
+      </div> -->
+
+    <!-- 百度搜索 -->
+    <!-- <div id="search-form-wrap">
+        <form action="http://www.baidu.com/s?cl=3&" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="wd" class="search-form-input" placeholder="Search" />
+          <button type="submit" class="search-form-submit">&#xF002;</button>
+          <input type="hidden" name="si" value="https://yansongcai.github.io" />
+        </form>
+      </div> -->
+</header>
+      <div class="outer container">
+        <section id="main"><article id="post-闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/08/bi-bao/" class="article-date">
+  <time datetime="2020-09-08T11:56:31.280Z" itemprop="datePublished">2020-09-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      闭包
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a name="loGgS"></a></p>
+<h1 id="概念"><a class="header-anchor" href="#概念">¶</a>概念</h1>
+<blockquote>
+<p>MDN:<br>
+A <strong>closure</strong> is the combination of a function bundled together (enclosed) with references to its surrounding state (the <strong>lexical environment</strong>). In other words, a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.</p>
+</blockquote>
+<p>函数和对其周围状态（<strong>lexical environment，词法环境</strong>）的引用捆绑在一起构成<strong>闭包</strong>。也就是说，闭包可以让你从内部函数访问外部函数作用域。在 JavaScript 中，每当函数被创建，就会在函数生成时生成闭包。</p>
+<p>闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量，利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。<br /></p>
+<p><a name="Ea6NW"></a></p>
+<h1 id="特性"><a class="header-anchor" href="#特性">¶</a>特性</h1>
+<p>1.函数嵌套函数，父级函数 返回 子函数体 给全局。<br />2.子函数 访问 父级函数 的局部变量<br />3.变量不会被垃圾回收机制回收<br /><br>
+<br />目的：把局部变量 变成 自由变量（生命周期永久的和页面同存）<br />作用：函数内部的变量可以在外部被访问<br /><br>
+<br />⚠️ 函数嵌套函数+内部函数使用了外部函数的自由变量<br />⚠️ 函数嵌套了异步函数，该异步函数不算是内层函数。类似于setTimeout等异步函数中的回调函数，不算内层函数<br /><br>
+<br /></p>
+<p><a name="vCvmy"></a></p>
+<h1 id="缺点"><a class="header-anchor" href="#缺点">¶</a>缺点</h1>
+<p>常驻内存，会增大内存的使用量，使用不当会造成内存泄漏。<br /><br>
+<br />闭包产生的变量不用了就赋值为null，垃圾回收机制就会释放掉。<br /></p>
+<p><a name="OGj1A"></a></p>
+<h1 id="示例-br"><a class="header-anchor" href="#示例-br">¶</a>示例<br /></h1>
+<p>函数fatherFn 的子函数childFn，被函数fatherFn 外部的一个变量outerFn引用的时候，就创建了一个闭包。<br />在执行完 var outerFn = fatherFn() 后，变量outerFn实际上是指向了函数childFn，再执行outerFn() 后就会打印val的值(第一次为11)。这段代码其实就创建了一个闭包。因为 函数fatherFn 外的 变量outerFn 引用了 函数fatherFn 内的 函数childFn。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fatherFn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> val = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">childFn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    val += <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(val);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> outerFn = fatherFn();</span><br><span class="line">outerFn(); <span class="comment">// 11</span></span><br><span class="line">outerFn(); <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+<br />
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">father</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> array = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> j= i; <span class="comment">// 自由变量j</span></span><br><span class="line">      array[i] =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">father</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> array = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>)</span>&#123;</span><br><span class="line">      <span class="comment">// 自由变量j</span></span><br><span class="line">      array[j] =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误的写法 没有使用父级函数的局部变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">father</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> array = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 祖先函数的作用域</span></span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="comment">// 父级函数的作用域</span></span><br><span class="line">      array[i] =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 闭包</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span> <span class="title">wrap</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;,<span class="number">1000</span>);</span><br><span class="line">  &#125;)(i)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0到9</span></span><br></pre></td></tr></table></figure>
+<br />
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非闭包</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 10个10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 非闭包</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span>=&gt;</span>&#123;</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 10个10</span></span><br></pre></td></tr></table></figure>
+<br />
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非闭包</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line"><span class="keyword">var</span> object = &#123;</span><br><span class="line">  name : <span class="string">"My Object"</span>,</span><br><span class="line">  getNameFunc : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(object.getNameFunc()()); <span class="comment">// The Window</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 闭包</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line"><span class="keyword">var</span> object = &#123;</span><br><span class="line">  name : <span class="string">"My Object"</span>,</span><br><span class="line">  getNameFunc : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 使用 that 保存 this</span></span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="comment">// 使用父级函数的局部变量 that</span></span><br><span class="line">      <span class="keyword">return</span> that.name;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(object.getNameFunc()()); <span class="comment">// My Object</span></span><br></pre></td></tr></table></figure>
+<p><a name="Ey01l"></a></p>
+<h1 id="过时的闭包"><a class="header-anchor" href="#过时的闭包">¶</a>过时的闭包</h1>
+<p>过时的闭包捕获具有过时值的变量。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createIncrement</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">increment</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    value += i;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">    <span class="comment">// message中的value对于 logValue函数 来说，已经不是父级函数的局部变量了。</span></span><br><span class="line">    <span class="keyword">var</span> message = <span class="string">`Current value is <span class="subst">$&#123;value&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">logValue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(message);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> inc = createIncrement(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> log = inc(); <span class="comment">// 打印 1</span></span><br><span class="line">inc(); <span class="comment">// 打印 2</span></span><br><span class="line">inc(); <span class="comment">// 打印 3</span></span><br><span class="line"><span class="comment">// ⽆法正确⼯作，打印出错误的数据</span></span><br><span class="line">log(); <span class="comment">// 打印 "Current value is 1"</span></span><br></pre></td></tr></table></figure>
+<p><br />在第一次调用inc()时，返回的闭包被分配给变量 log。对 inc() 的 3 次调用的增量 value 为 3。<br />最后，调用log() 打印 message “Current value is 1”，这是出乎意料的，因为此时 value 等于 3。<br /><br>
+<br />log() 是过时的闭包。在第一次调用 inc() 时，闭包 log() 捕获了具有 “Current value is 1” 的 message 变量。而现在，当 value 已经是 3 时，message 变量已经过时了。<br /></p>
+<p><a name="item-4"></a></p>
+<h2 id="修复过时闭包的问题"><a class="header-anchor" href="#修复过时闭包的问题">¶</a>修复过时闭包的问题</h2>
+<p><a name="xdXg1"></a></p>
+<h4 id="使用新的闭包"><a class="header-anchor" href="#使用新的闭包">¶</a>使用新的闭包</h4>
+<p>找到捕获了最新 message 变量的闭包。就是从最后一次调用 inc() 返回的闭包。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inc = createIncrement(<span class="number">1</span>);</span><br><span class="line">inc();  <span class="comment">// 打印 1</span></span><br><span class="line">inc();  <span class="comment">// 打印 2</span></span><br><span class="line"><span class="keyword">var</span> latestLog = inc(); <span class="comment">// 打印 3</span></span><br><span class="line"><span class="comment">// 正常工作</span></span><br><span class="line">latestLog(); <span class="comment">// 打印 "Current value is 3"</span></span><br></pre></td></tr></table></figure>
+<p><br />latestLog 捕获的 message 变量具有最新的的值 “Current value is 3”。<br />顺便说一下，这大概就是 React Hook 处理闭包新鲜度的方式。<br />Hooks 实现假设在组件重新渲染之间，作为 Hook 回调提供的最新闭包(例如 useEffect(callback)) 已经从组件的函数作用域捕获了最新的变量。<br /></p>
+<p><a name="avvBC"></a></p>
+<h4 id="关闭已更改的变量"><a class="header-anchor" href="#关闭已更改的变量">¶</a>关闭已更改的变量</h4>
+<p>第二种方法是让logValue()直接使用 value。<br />让我们移动行 const message = …; 到 logValue() 函数体中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createIncrementFixed</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value = <span class="number">0</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">increment</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    value += i;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">logValue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> message = <span class="string">`Current value is <span class="subst">$&#123;value&#125;</span>`</span>;</span><br><span class="line">      <span class="built_in">console</span>.log(message);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> increment;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> inc = createIncrementFixed(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> log = inc(); <span class="comment">// 打印 1</span></span><br><span class="line">inc();             <span class="comment">// 打印 2</span></span><br><span class="line">inc();             <span class="comment">// 打印 3</span></span><br><span class="line"><span class="comment">// 正常工作</span></span><br><span class="line">log();             <span class="comment">// 打印 "Current value is 3"</span></span><br></pre></td></tr></table></figure>
+<p><br />logValue() 关闭 createIncrementFixed() 作用域内的 value 变量。<br />log() 现在打印正确的消息“Current value is 3”。<br /><br>
+<br /></p>
+<p><a name="FDi4D"></a></p>
+<h1 id="相关知识点"><a class="header-anchor" href="#相关知识点">¶</a>相关知识点</h1>
+<p><a name="sLBRk"></a></p>
+<h4 id="作用域"><a class="header-anchor" href="#作用域">¶</a>作用域</h4>
+<p>内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。每个环境都可以向上搜索作用域链，但任何环境都不能向下搜索作用域链而进入另一个执行环境。<br /></p>
+<p><a name="v0ItD"></a></p>
+<h4 id="垃圾回收原理"><a class="header-anchor" href="#垃圾回收原理">¶</a>垃圾回收原理</h4>
+<p>(1)javascript中如果一个对象不再被引用，那么这个对象就会被回收。<br />(2)如果两个对象互相引用，而不再被第3者引用，那么这两个互相引用的对象也会被回收。<br /></p>
+<p><a name="1xPPq"></a></p>
+<h4 id="内存泄漏"><a class="header-anchor" href="#内存泄漏">¶</a>内存泄漏</h4>
+<p>产生原因：</p>
+<ul>
+<li>意外的全局变量</li>
+<li>被遗忘的定时器或者回调</li>
+<li>没有清理的Dom元素引用</li>
+<li>闭包</li>
+<li>IE7/8引用计数使用循环引用产生的问题</li>
+</ul>
+<p><br />解决办法：<br />1）减少不必要的全局变量，或者生命周期较长的对象，及时对无用的数据进行垃圾回收；<br />2）注意程序逻辑，避免“死循环”之类的 ；<br />3）避免创建过多的对象  原则：不用了的东西要及时归还。<br /><br>
+<br /><br>
+<br />参考<br /><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures</a><br /><a href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a><br /><a href="https://www.liaoxuefeng.com/wiki/1022910821149312/1023021250770016" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1022910821149312/1023021250770016</a><br /><a href="https://www.runoob.com/js/js-function-closures.html" target="_blank" rel="noopener">https://www.runoob.com/js/js-function-closures.html</a><br /><a href="https://blog.csdn.net/webxiaoma/article/details/53213113" target="_blank" rel="noopener">https://blog.csdn.net/webxiaoma/article/details/53213113</a><br /><a href="https://segmentfault.com/a/1190000020805789?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000020805789?utm_source=tag-newest</a><br /></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="https://yansongcai.github.io/2020/09/08/bi-bao/" data-id="cketwfixv0000hbwq8uo88a9w" class="article-share-link">Share</a> -->
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/06/clone/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">深浅拷贝</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/08/bi-bao/">闭包</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/clone/">深浅拷贝</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/05/test-img/">test img</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/null-page/">null page</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/ce-shi/">测试</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 蔡延松<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">列表</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+
+
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
